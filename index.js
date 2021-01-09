@@ -27,13 +27,25 @@ const recFilm = async () => {
   })
 const rootEl = document.querySelector("#root");
   filmEl.forEach(film =>rootEl.innerHTML += film )
-     
-     
-  
- 
-    
 }
 
 recFilm();
+
+const searchEl = document.querySelector('#formSearch');
+const searchValue = document.querySelector('#search');
+searchEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (searchValue.value) {
+    getFilm(`${SEARCH_API}${searchValue.value}`);
+  } else {
+    alert('Lutfen bir film ismi giriniz')
+  }
+})
+
+searchValue.addEventListener('change', (e) => {
+  if(!(e.target.value)) {
+    getFilm(FILM_API);
+  }
+})
     
 
